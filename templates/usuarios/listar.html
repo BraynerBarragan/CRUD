@@ -22,7 +22,7 @@ Usuarios
             <td>{{usuario[3]}}</td>
             <td>
                 <a href="{{ url_for('editar',id=usuario[0]) }}"><button>editar</button></a>
-                <button>Eliminar</button>
+                <a href="{{ url_for('eliminar',id=usuario[0]) }}"><button>Eliminar</button></a>
             </td>
         
         </tr>

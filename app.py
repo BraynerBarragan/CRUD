@@ -44,7 +44,7 @@ def crear_usuarios():
     """,(nombres, apellidos, email, password)) 
     db.commit()
     return redirect(url_for('usuarios'))
-
+# ------  EDITAR  --------
 @app.route('/usuarios/editar/<id>', methods=('GET', 'POST'))
 def editar(id):
     act=db.execute('select * from usuarios where id=?',(id,)).fetchone()
@@ -64,7 +64,14 @@ def guardar_cambios(id):
     db.commit()
 
     return redirect(url_for('usuarios'))
-    
+
+# ------ ELIMINAR ------
+@app.route('/usuarios/eliminar/<id>')
+def eliminar(id):
+    cursor=db.cursor()
+    cursor.execute('delete from usuarios where id=?',(id,))
+    db.commit()
+    return redirect(url_for('usuarios'))
     
     
 
