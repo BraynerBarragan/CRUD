@@ -15,10 +15,16 @@ Usuarios
     <tbody>
         {% for usuario in usuarios %}
         <tr>
+            
             <td>{{usuario[0]}}</td>
             <td>{{usuario[1]}}</td>
             <td>{{usuario[2]}}</td>
             <td>{{usuario[3]}}</td>
+            <td>
+                <a href="{{ url_for('editar',id=usuario[0]) }}"><button>editar</button></a>
+                <button>Eliminar</button>
+            </td>
+        
         </tr>
 
         {% endfor %}
