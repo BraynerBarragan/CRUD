@@ -8,14 +8,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/contacto', methods=['GET', 'POST'])
-def contacto():
-    # obtener formulario
-    if request.method=='GET':
-        return render_template('contactos.html')
-    # guardando la informacion
-    nombre= request.form.get('nombres')
-    return 'Guardando informacion...' + nombre
+#@app.route('/contacto', methods=['GET', 'POST'])
+#def contacto():
+#    # obtener formulario
+#    if request.method=='GET':
+#        return render_template('contactos.html')
+#    # guardando la informacion
+#    nombre= request.form.get('nombres')
+#    return 'Guardando informacion...' + nombre
 
 @app.route('/usuarios')
 def usuarios():
@@ -45,7 +45,7 @@ def crear_usuarios():
     db.commit()
     return redirect(url_for('usuarios'))
 # ------  EDITAR  --------
-@app.route('/usuarios/editar/<id>', methods=('GET', 'POST'))
+@app.route('/usuarios/editar/<id>',)
 def editar(id):
     act=db.execute('select * from usuarios where id=?',(id,)).fetchone()
     if request.method == 'GET':
@@ -70,6 +70,13 @@ def guardar_cambios(id):
 def eliminar(id):
     cursor=db.cursor()
     cursor.execute('delete from usuarios where id=?',(id,))
+    db.commit()
+    return redirect(url_for('usuarios'))
+
+@app.route('/usuarios/eliminar_todo')
+def eliminar_todo():
+    cursor=db.cursor()
+    cursor.execute('delete from usuarios')
     db.commit()
     return redirect(url_for('usuarios'))
     
